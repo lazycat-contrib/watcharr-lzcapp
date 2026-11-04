@@ -1,0 +1,17 @@
+package: community.lazycat.app.watcharr
+name: Watcharr
+description: "Self-hosted watched list for movies, TV series, anime and games, with user accounts and a clean UI."
+version: 4.3.0
+min_os_version: "1.5.0"
+homepage: https://watcharr.app
+author: sbondCo
+license: GPL-3.0
+permissions:
+  required: []
+locales:
+  zh:
+    name: Watcharr
+    description: "自托管观影记录：电影、剧集、动画与游戏的观看清单，支持多用户。"
+  en:
+    name: Watcharr
+    description: "Self-hosted watched list for movies, TV series, anime and games, with user accounts and a clean UI."

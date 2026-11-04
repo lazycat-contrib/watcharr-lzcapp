@@ -1,0 +1,31 @@
+application:
+  subdomain: watcharr
+  multi_instance: false
+  # Watcharr has its own login and user accounts, so it authenticates itself.
+  public_path:
+    - /
+  upstreams:
+    - location: /
+      backend: http://watcharr:3080/
+services:
+  watcharr:
+    # upstream: ghcr.io/sbondco/watcharr:v4.3.0
+    image: ghcr.1ms.run/sbondco/watcharr:v4.3.0
+    environment:
+      - PORT=3080
+      - WATCHARR_DATA=/data
+    binds:
+      - /lzcapp/var/data:/data
+usage: |
+  Watcharr 是自托管的观影记录服务：记录电影、剧集、动画与游戏，
+  自动从 TMDB 等来源补全封面与简介，支持多用户各自维护观看清单。
+
+  首次打开会看到登录页，直接输入一个用户名和密码，然后点击页面下方的
+  「Not a user?」→ 出现「Sign Up」按钮即可注册。**第一个注册的账号会成为管理员**。
+  没有内置口令。
+
+  说明：
+    - 应用自带账号体系，直接对外开放由 Watcharr 自己的登录页鉴权，所以使用 public_path。
+    - 数据库与缓存都在 data 目录，随应用持久化保留。
+    - 补充影视元数据需要访问外网（TMDB 等），首次导入条目时会联网获取信息。
+    - 未做实机验证。
